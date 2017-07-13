@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="subjecty" ng-controller="textInput">
+
+sender: <input type="text" ng-model="sender"><br>
+subject <input type="text" ng-model="subject"><br>
+preheader: <input type="textarea" ng-model="preheader"><br>
+
+
+<br>
+{{sender}}
+<br>
+{{subject}}
+<br>
+{{preheader}}
+
+
+<div style="color:blue">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+
+<div style="color:green">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+</div>
+
+
+<div style="color:red">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+</div>
+
+
+<div style="color:grey">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+</div>
+
+<div style="color:orange">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+</div>
+
+<div style="color:yellow">
+<br>
+{{sender}}
+<br>
+
+{{subject}}
+<br>
+
+{{preheader}}
+</div>
+</div>
+
+</div>
+
+<script>
+var app = angular.module('subjecty', []);
+app.controller('textInput', function($scope) {
+    $scope.sender = "John Smith";
+    $scope.subject = "Your subject here";
+    $scope.preheader="Awesome preheader text";
+});
+</script>
+
+</body>
+</html>
