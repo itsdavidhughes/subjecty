@@ -183,6 +183,9 @@ a.floating{
 	color: white;
 	cursor: pointer;
 	border-radius: 3px;
+	animation-duration: .5s;
+  	animation-name: slidein;
+
 }
 
 a.floating:hover{
@@ -193,6 +196,21 @@ a.floating:hover{
 	padding: 0.5em 1em;
 	color: white;
 	cursor: pointer;
+}
+
+
+
+
+@keyframes slidein {
+  from {
+    right: -20em;
+
+   
+  }
+
+  to {
+   right: 1em;
+  }
 }
 
 
