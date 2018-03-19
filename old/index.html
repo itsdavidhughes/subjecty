@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115993919-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-115993919-1');
+	</script>
+
+	<title>Subjecty — A simple &amp; free subject line testing tool</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+	<link rel="stylesheet" href="devices.min.css" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+	<style type="text/css">
+
+	*{
+		margin: 0;
+		padding: 0;
+	}
+
+	body{
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 1em;
+		background: #efefef;
+	}
+
+	#sidebar{
+		width:20%;
+		background: #efefef;
+		height: 100vh;
+		float:left;
+
+
+
+	}
+
+	@media screen and (max-width:500px){
+
+		#sidebar{
+			width:100%;
+			float:none;
+			height: 25vh;
+		}
+	}
+
+	#devices{
+
+		background: #3d3d3d;
+		height: 100%;
+		width: 80%;
+		float: left;
+
+	}
+
+	section {
+	    background: #1e1e1e;
+	    border-bottom: 1px solid rgba(255,255,255,0.1);
+	    width: 100%;
+	    height: 100%;
+	    display: table;
+	    position: relative;
+
+	    }
+
+	section .wrap {
+	    display: table-cell;
+	    vertical-align: middle;
+	    text-align: center;
+	    padding: 200px 0;
+
+	}
+
+	h2{
+		color: #bcbcbc;
+		margin-bottom: 20px;
+		font-size: 16px;
+	}
+	.sticky{
+		position: fixed;
+		padding: 30px;
+		width: inherit;
+		box-sizing: border-box;
+	}
+
+	label{
+		display: block;
+		margin-bottom: 3px;
+	}
+
+	input[type="text"]  {
+	  display: block;
+	  margin: 0 0 10px 0;
+	  width: 100%;
+	  font-family: sans-serif;
+	  font-size: 14px;
+	  appearance: none;
+	  box-shadow: none;
+	  border-radius: 3px;
+	  padding: 10px;
+	  border: solid 1px #dcdcdc;
+	  transition: box-shadow 0.3s, border 0.3s;
+	  box-sizing : border-box;
+
+	}
+
+	input[type="text"]:focus {
+	  outline: none;
+	}
+
+
+
+	input[type="text"]:focus,
+	input[type="text"].focus{
+	  border: solid 1px #707070;
+	  box-shadow: 0 0 5px 1px #f3f3f3;
+	}
+
+	.counter{
+		background: #f2f2f2;
+		border-radius: 30px;
+		padding: 1px 8px;
+		font-size: 0.9em;
+		border: 1px solid #c1c1c1;
+		position: absolute;
+		top: 31px;
+		right: 8px;
+	}
+
+	.fieldwrap{
+		position: relative;
+
+	}
+
+	.iphone6 .screen{
+
+		background-image: url(iphone6-bg.jpg);
+		background-size: cover;
+		font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+		color: #2c2c2c;
+		position: relative;
+
+	}
+
+	.iphone6preview{
+		position: absolute;
+		top: 117px;
+		left: 27px;
+		text-align: left;
+	}
+
+	.iphone6 .sender {
+		font-weight: bold;
+		background: white;
+		width: 240px;
+		margin-bottom: 3px;
+
+	}
+
+	.iphone6 .subject{
+		font-size: 15px;
+		color: #1b1b1b;
+		letter-spacing: -0.2px;
+		background: white;
+		margin-bottom: 2px;
+	}
+
+	.iphone6 .preheader{
+		font-size: 15px;
+		line-height: 19px;
+		color: #949494;
+		letter-spacing: -0.25px;
+		background: white;
+		width:339px;
+		-webkit-font-smoothing: antialiased;
+
+
+	}
+
+
+
+
+	/* Gmail Desktop UI CSS */
+
+
+	a.floating{
+		position: fixed;
+		bottom: 1em;
+		right: 1em;
+		background: red;
+		padding: 0.5em 1em;
+		color: white;
+		cursor: pointer;
+		border-radius: 3px;
+		animation-duration: .5s;
+	  	animation-name: slidein;
+
+
+	}
+
+	a.floating:hover{
+		position: fixed;
+		bottom: 1em;
+		right: 1em;
+		background: red;
+		padding: 0.5em 1em;
+		color: white;
+		cursor: pointer;
+	}
+
+
+
+
+	@keyframes slidein {
+	  from {
+	    right: -20em;
+
+	   
+	  }
+
+	  to {
+	   right: 1em;
+
+	  }
+	}
+
+
+	</style>
+</head>
+<body>
+
+<div ng-app="subjecty" ng-controller="textInput">
+
+	<div id="sidebar">
+		<div class="sticky">
+
+			<div class="fieldwrap">
+				<label>Sender</label><input type="text" ng-model="sender" autofocus><span class="counter">{{sender.length}}</span>
+			</div>
+			<div class="fieldwrap">
+				<label>Subject</label><input type="text" ng-model="subject"><span class="counter">{{subject.length}}</span>
+			</div>
+			<div class="fieldwrap">
+				<label>Preheader</label> <input type="text" class="textarea" ng-model="preheader"><span class="counter">{{preheader.length}}</span>
+			</div>
+		</div>
+			
+	</div><!--/sidebar-->
+
+	<div id="devices">
+
+		<section id="iphone6">
+
+			<div class="wrap">
+
+				<h2>iPhone 6</h2>
+
+				
+
+					<div class="marvel-device iphone6 black">
+					    <div class="top-bar"></div>
+					    <div class="sleep"></div>
+					    <div class="volume"></div>
+					    <div class="camera"></div>
+					    <div class="sensor"></div>
+					    <div class="speaker"></div>
+					    <div class="screen">
+
+					    <!--<img src="iphone6-bg.jpg" width="100%" />-->
+
+						    <div class="iphone6preview">
+						       
+						       <div class="sender">{{sender}}</div>
+						      
+						       <div class="subject">{{subject}}</div>
+						      
+						       <div class="preheader">{{preheader}}</div>
+						    </div>
+
+					    </div>
+					    <div class="home"></div>
+					    <div class="bottom-bar"></div>
+					</div>
+			</div>
+		
+		</section>
+
+			
+
+		<section id="iphone6plus">
+
+			<div class="wrap">
+
+				<h2>iPhone 6+</h2>
+
+				<div class="marvel-device iphone6plus black">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="volume"></div>
+				    <div class="camera"></div>
+				    <div class="sensor"></div>
+				    <div class="speaker"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+
+				    </div>
+				    <div class="home"></div>
+				    <div class="bottom-bar"></div>
+				</div>
+
+			</div>
+		</section>
+
+		<section id="iphone5s">
+			<div class="wrap">
+
+			<h2>iPhone 5s</h2>
+
+				<div class="marvel-device iphone5s black">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="volume"></div>
+				    <div class="camera"></div>
+				    <div class="sensor"></div>
+				    <div class="speaker"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				    <div class="home"></div>
+				    <div class="bottom-bar"></div>
+				</div>
+			</div>
+		</section>
+
+		<section id="iphone5c">
+			<div class="wrap">
+
+			<h2>iPhone 5c</h2>
+
+				<div class="marvel-device iphone5c white">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="volume"></div>
+				    <div class="camera"></div>
+				    <div class="sensor"></div>
+				    <div class="speaker"></div>
+				    <div class="screen">
+				       <br>
+				       {{sender}} 
+				       <br>
+				       {{subject}} 
+				       <br>
+				       {{preheader}}
+				    </div>
+				    <div class="home"></div>
+				    <div class="bottom-bar"></div>
+				</div>
+			</div>
+		</section>
+
+
+		<section id="ipad">
+			<div class="wrap">
+
+				<h2>iPad</h2>
+
+				<div class="marvel-device ipad black">
+				    <div class="camera"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				    <div class="home"></div>
+				</div>
+			</div>
+		</section>
+
+		<section id="iphone4s">
+			<div class="wrap">
+
+				<h2>iPhone 4s</h2>
+
+				<div class="marvel-device iphone4s black">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="volume"></div>
+				    <div class="camera"></div>
+				    <div class="sensor"></div>
+				    <div class="speaker"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				    <div class="home"></div>
+				    <div class="bottom-bar"></div>
+				</div>
+			</div>
+		</section>
+
+		<section id="nexus5">
+			<div class="wrap">
+
+				<h2>Nexus5</h2>
+
+				<div class="marvel-device nexus5">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="volume"></div>
+				    <div class="camera"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				</div>
+			</div>
+		</section>	
+
+		<section id="s5">
+			<div class="wrap">
+
+				<h2>Samsung Galaxy s5</h2>
+
+				<div class="marvel-device s5 black">
+				    <div class="top-bar"></div>
+				    <div class="sleep"></div>
+				    <div class="camera"></div>
+				    <div class="sensor"></div>
+				    <div class="speaker"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				    <div class="home"></div>
+				</div>
+			</div>
+		</section>
+
+		<section id="macbook">
+			<div class="wrap">
+
+				<h2>Desktop</h2>
+
+				<div class="marvel-device macbook">
+				    <div class="top-bar"></div>
+				    <div class="camera"></div>
+				    <div class="screen">
+				        <br>
+				        {{sender}} 
+				        <br>
+				        {{subject}} 
+				        <br>
+				        {{preheader}}
+				    </div>
+				    <div class="bottom-bar"></div>
+				</div>
+			</div>
+		</section>
+
+	
+	
+
+	</div><!--/devices-->
+<a class="continually floating">☝️ Just one question</a>
+</div>
+
+<script>
+var app = angular.module('subjecty', []);
+app.controller('textInput', function($scope) {
+    $scope.sender = "John Smith";
+    $scope.subject = "Your subject here";
+    $scope.preheader="Awesome preheader text";
+});
+</script>
+
+<!-- Continually-->
+
+<script>var continuallySettings = { appID: 'ewg9yq7y4j8q', showButton: false };</script>
+<script src="https://cdn-app.continual.ly/js/embed/continually-embed.latest.min.js"></script>
+
+<!--<script>
+  window.intercomSettings = {
+    app_id: "g8g9eaz7"
+  };
+</script>
+
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/g8g9eaz7';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+-->
+</body>
+</html>
