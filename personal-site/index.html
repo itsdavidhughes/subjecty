@@ -36,6 +36,7 @@
       });
     });
   </script>
+  <script src="lazysizes.min.js" async=""></script>
   <link rel="stylesheet" href="animate.css" type="text/css">
   <style type="text/css">
 
@@ -266,7 +267,16 @@ div#projects{
 
   }
 
+.blur-up {
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    transition: filter 400ms, -webkit-filter 400ms;
+  }
 
+  .blur-up.lazyloaded {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
 
    
   </style>
@@ -301,7 +311,7 @@ div#projects{
 
     <div id="intro" class="fadeIn animated">
 
-      <figure ><img src="intro.png"><figcaption>Me at Brooklyn Beta. Photo by @marktheile</figcaption></figure>
+      <figure><img src="intro.png"><figcaption>Me at Brooklyn Beta. Photo by @marktheile</figcaption></figure>
 
       <h2>Intro</h2>
 
@@ -329,39 +339,39 @@ div#projects{
 
     <div class="project">
       
-      <img src="typecast.png"/>
+      <img src="typecast.png" class="lazyload blur-up fadeIn" />
       <h3>Typecast<span>Front → Monotype</span></h3>
 
 
     </div>
      <div class="project item2">
       
-      <img src="typecast.png"/>
+      <img src="membership.png" class="lazyload blur-up fadeIn" />
       <h3>Membership (now Mosaic)<span>Monotype</span></h3>
 
     </div>
      <div class="project">
       
-      <img src="typecast.png"/>
+      <img src="responsive.jpg" class="lazyload blur-up fadeIn" />
       <h3>Type Tour<span>Monotype</span></h3>
 
     </div>
     <div class="project item2">
       
-      <img src="typecast.png"/>
+      <img src="subjecty.png" class="lazyload blur-up fadeIn" />
       <h3>Subjecty<span>Side Project</span></h3>
 
     </div>
 
      <div class="project ">
       
-      <img src="typecast.png"/>
+      <img src="copychanger.png" class="lazyload blur-up fadeIn" />
       <h3>CopyChanger<span>Side Project</span></h3>
 
     </div>
     <div class="project item2">
       
-      <img src="typecast.png"/>
+      <img src="thetapmap.png" class="lazyload blur-up fadeIn"/>
       <h3>TheTapMap<span>Student Project</span></h3>
 
     </div>
@@ -371,7 +381,7 @@ div#projects{
 
     <div id="about">
 
-    <img src="meandstringer.png"/>
+    <img src="meandstringer.png" />
     <h2>About</h2>
     
 
